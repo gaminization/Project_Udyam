@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Accel Business – Go digital in one sitting</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;600;800&display=swap">
+<style>
+:root{--bg:#f2f5f4;--surface:#fff;--ink:#12262b;--muted:#5d7074;--line:#d9e2e1;--brand:#0e5a4b;--brand-ink:#fff;--accent:#f0a500;--ok:#1b7f4b;--warn:#b86e00;--bad:#b3261e;--okbg:#e5f4ec;--warnbg:#fff1d6;--badbg:#fde8e6;--chip:#e6eeed;--shadow:0 1px 2px rgba(18,38,43,.08)}
+:root:not([data-theme="light"]){}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#0d1819;--surface:#16282a;--ink:#e8f0ef;--muted:#9bb0b2;--line:#294244;--brand:#37b99b;--brand-ink:#062a22;--accent:#f4b73a;--ok:#6fd49c;--warn:#f2b45c;--bad:#ff8f86;--okbg:#14352a;--warnbg:#3a2d10;--badbg:#3f1b18;--chip:#1f3638;--shadow:none}}
+:root[data-theme="dark"]{--bg:#0d1819;--surface:#16282a;--ink:#e8f0ef;--muted:#9bb0b2;--line:#294244;--brand:#37b99b;--brand-ink:#062a22;--accent:#f4b73a;--ok:#6fd49c;--warn:#f2b45c;--bad:#ff8f86;--okbg:#14352a;--warnbg:#3a2d10;--badbg:#3f1b18;--chip:#1f3638;--shadow:none}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 Mukta,"Noto Sans Devanagari",system-ui,sans-serif}
+button{font:inherit;color:inherit;cursor:pointer}
+.app{max-width:460px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;background:var(--bg)}
+header{display:flex;align-items:center;justify-content:space-between;padding:14px 16px 6px}
+header h1{font-size:19px;font-weight:800;margin:0;letter-spacing:-.01em}
+header small{color:var(--muted);display:block;font-size:13px;line-height:1.2}
+.lang{display:flex;gap:4px}.lang button{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:3px 10px;font-weight:600}
+.lang button.on{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+main{flex:1;padding:8px 16px 96px}
+nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(460px,100%);background:var(--surface);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));z-index:5}
+nav button{border:0;background:none;padding:6px 2px;font-size:12.5px;color:var(--muted);font-weight:600;display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1.15}
+nav button .dot{width:26px;height:26px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:13px;font-weight:800}
+nav button.on{color:var(--brand)}nav button.on .dot{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+nav button.done .dot{border-color:var(--ok);color:var(--ok)}
+h2{font-size:24px;line-height:1.15;margin:10px 0 4px;letter-spacing:-.02em}
+.sub{color:var(--muted);margin:0 0 12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0;box-shadow:var(--shadow)}
+.bubble{max-width:88%;padding:10px 13px;border-radius:16px;margin:8px 0;white-space:pre-wrap}
+.bot{background:var(--surface);border:1px solid var(--line);border-top-left-radius:4px}
+.me{background:var(--brand);color:var(--brand-ink);margin-left:auto;border-top-right-radius:4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.chip{border:1.5px solid var(--brand);background:transparent;color:var(--brand);border-radius:999px;padding:7px 14px;font-weight:600}
+.chip.sel{background:var(--brand);color:var(--brand-ink)}
+.chip:hover{background:var(--chip)}.chip.sel:hover{background:var(--brand)}
+.txt{display:flex;gap:8px;margin-top:10px}.txt input{flex:1;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--surface);color:var(--ink);font:inherit}
+.btn{border:0;background:var(--brand);color:var(--brand-ink);border-radius:12px;padding:12px 18px;font-weight:800;width:100%}
+.btn.sm{width:auto;padding:9px 14px}.btn.ghost{background:transparent;border:1.5px solid var(--brand);color:var(--brand)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;align-items:center;gap:10px}.grow{flex:1;min-width:0}
+.item{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line)}.item:first-child{border-top:0}
+.item b{display:block}.item small{color:var(--muted);display:block;line-height:1.3}
+.price{font-weight:800;white-space:nowrap}
+.tog{appearance:none;width:44px;height:26px;border-radius:99px;background:var(--line);position:relative;flex:none;cursor:pointer;border:0;transition:.15s}
+.tog::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:.15s}
+.tog:checked{background:var(--brand)}.tog:checked::after{left:21px}.tog:disabled{opacity:.5}
+.tog:focus-visible,.chip:focus-visible,.btn:focus-visible,nav button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.total{background:var(--brand);color:var(--brand-ink);border-radius:16px;padding:16px;position:sticky;top:6px;z-index:3}
+.total .big{font-size:38px;font-weight:800;letter-spacing:-.03em;line-height:1}
+.total small{opacity:.85}
+.seg{display:flex;background:var(--chip);border-radius:10px;padding:3px;gap:3px}.seg button{flex:1;border:0;background:none;padding:7px;border-radius:8px;font-weight:600}.seg button.on{background:var(--surface);box-shadow:var(--shadow)}
+.tag{display:inline-block;font-size:12.5px;font-weight:700;border-radius:6px;padding:1px 8px}
+.tag.ok{background:var(--okbg);color:var(--ok)}.tag.warn{background:var(--warnbg);color:var(--warn)}.tag.bad{background:var(--badbg);color:var(--bad)}
+.find{border-radius:10px;padding:10px 12px;margin:8px 0}.find.BLOCK{background:var(--badbg)}.find.REVIEW{background:var(--warnbg)}.find.INFO{background:var(--chip)}.find.PASS{background:var(--okbg)}
+.find b{display:block}.find small{display:block;color:var(--muted)}
+.docs{display:grid;grid-template-columns:1fr 1fr;gap:8px}.doc{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--surface);font-size:13px}
+.doc img{width:100%;height:120px;object-fit:cover;object-position:top;display:block;background:var(--chip)}
+.doc div{padding:6px 8px}.doc .miss{height:120px;display:grid;place-items:center;color:var(--bad);font-weight:700;background:var(--badbg)}
+.kv{font-size:13px;color:var(--muted);word-break:break-word}.kv b{color:var(--ink);font-weight:600}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;padding:6px 6px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-weight:600}
+.scroll{overflow-x:auto}
+.tl{position:relative;margin:14px 0 4px 8px}
+.step{display:flex;gap:14px;padding-bottom:22px;position:relative}
+.step::before{content:"";position:absolute;left:11px;top:26px;bottom:0;width:2px;background:var(--line)}.step:last-child::before{display:none}
+.step.done::before{background:var(--ok)}
+.pin{width:24px;height:24px;border-radius:50%;border:2px solid var(--line);background:var(--surface);flex:none;display:grid;place-items:center;font-size:13px;font-weight:800;z-index:1}
+.step.done .pin{background:var(--ok);border-color:var(--ok);color:var(--brand-ink)}
+.step.now .pin{border-color:var(--accent);background:var(--accent);color:#2b1d00;box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 28%,transparent)}
+.step b{display:block;line-height:1.2}.step small{color:var(--muted)}
+.step.todo{opacity:.7}
+.wa{background:#dcf8c6;color:#14301a;border-radius:12px;padding:10px 12px;font-size:14.5px;border-top-left-radius:2px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .wa{background:#1d4a32;color:#e6f6ea}}
+input[type=range]{width:100%;accent-color:var(--brand)}
+.consent label{display:flex;gap:10px;align-items:flex-start;margin:8px 0}
+.consent input{margin-top:6px;accent-color:var(--brand);width:18px;height:18px}
+.k{font-size:13px;color:var(--muted)}
+.hide{display:none!important}
+select{font:inherit;padding:9px;border-radius:10px;border:1px solid var(--line);background:var(--surface);color:var(--ink);width:100%}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head>
+<body><div class="app">
+<header><div><h1 id="ttl">Accel Business</h1><small id="tag"></small></div>
+<div class="lang"><button data-l="en" class="on">EN</button><button data-l="hi">हिं</button></div></header>
+<main id="main"></main>
+<nav id="nav"></nav></div>
+<script id="DATA" type="application/json">__DATA__</script>
+<script>
+const D=JSON.parse(document.getElementById('DATA').textContent);
+const CAT={};D.catalogue.forEach(r=>{r.tiers=r.available_city_tiers.split(';').map(Number);r.need_one=r.requires_one_of?r.requires_one_of.split('|'):[];['price_min_inr_per_month','price_max_inr_per_month','one_time_setup_inr','min_contract_months','min_employees','min_sites','typical_install_days'].forEach(k=>r[k]=+r[k]);CAT[r.product_id]=r});
+const GST=new Map(D.gst.map(r=>[r[0],{legal:r[1],trade:r[2],addr:r[3],status:r[4]}]));
+const UDY=new Map(D.udyam.map(r=>[r[0],{name:r[1],city:r[2]}]));
+const TODAY=new Date('2026-07-15T00:00:00Z');
+const inr=n=>'₹'+Math.round(n).toLocaleString('en-IN');
+/* ---------- i18n ---------- */
+const T={en:{tag:'Everything your business needs, in one sitting',n1:'Advisor',n2:'Quote',n3:'KYC',n4:'Track',n5:'Team',
+ q_type:'Namaste! I am your Accel Business advisor. What kind of business do you run?',q_emp:'How many people work with you (including you)?',q_sites:'How many locations do you have?',q_tier:'Where is your business?',q_gst:'Do you have a GST registration?',q_net:'What internet do you use today?',q_need:'What do you need? Tap all that apply, then press Done.',q_sims:'How many business SIMs do you need?',
+ done:'Done',yes:'Yes',no:'No',typeHere:'Or type your answer…',send:'Send',rec:'Here is what I recommend',why:'Why this fits',cantAdd:'Not available for you right now',seeQuote:'See my quote',restart:'Start again',
+ mo:'/month',gst18:'GST @18%',total:'Total per month',setup:'One-time setup',contract:'Contract',months:'months',first:'First bill',addons:'Add more (price updates instantly)',core:'Your bundle',goKyc:'Looks good – verify my business',saving:'Longer contract = lower price',install:'Installation in about',days:'days'},
+hi:{tag:'आपके बिज़नेस की ज़रूरत, एक ही बार में',n1:'सलाहकार',n2:'कोटेशन',n3:'केवाईसी',n4:'ट्रैक',n5:'टीम',
+ q_type:'नमस्ते! मैं आपका Accel Business सलाहकार हूँ। आप किस तरह का बिज़नेस चलाते हैं?',q_emp:'आपके साथ कितने लोग काम करते हैं (आपको मिलाकर)?',q_sites:'आपकी कितनी जगहों पर दुकान/दफ़्तर है?',q_tier:'आपका बिज़नेस कहाँ है?',q_gst:'क्या आपके पास GST रजिस्ट्रेशन है?',q_net:'अभी आप कौन सा इंटरनेट इस्तेमाल करते हैं?',q_need:'आपको क्या चाहिए? जो चाहिए सब चुनें, फिर "हो गया" दबाएँ।',q_sims:'आपको कितने बिज़नेस सिम चाहिए?',
+ done:'हो गया',yes:'हाँ',no:'नहीं',typeHere:'या अपना जवाब लिखें…',send:'भेजें',rec:'मेरी सलाह यह है',why:'यह क्यों सही है',cantAdd:'अभी आपके लिए उपलब्ध नहीं',seeQuote:'मेरा कोटेशन देखें',restart:'दोबारा शुरू करें',
+ mo:'/माह',gst18:'GST @18%',total:'हर महीने कुल',setup:'एक बार का सेटअप',contract:'कॉन्ट्रैक्ट',months:'महीने',first:'पहला बिल',addons:'और जोड़ें (कीमत तुरंत बदलेगी)',core:'आपका बंडल',goKyc:'ठीक है – मेरा बिज़नेस वेरिफ़ाई करें',saving:'लंबा कॉन्ट्रैक्ट = कम कीमत',install:'इंस्टॉलेशन लगभग',days:'दिन'}};
+let L='en';const t=k=>T[L][k]||T.en[k]||k;
+/* ---------- engine (mirrors engine/recommender.py + engine/kyc.py) ---------- */
+function eligible(p,prof,ids){if(!p.tiers.includes(prof.tier))return[false,L=='hi'?`Tier-${prof.tier} शहरों में उपलब्ध नहीं`:`not sold in Tier-${prof.tier} cities`];
+ if(prof.employees<p.min_employees)return[false,L=='hi'?`${p.min_employees}+ कर्मचारियों के लिए`:`for businesses with ${p.min_employees}+ staff`];
+ if(prof.sites<p.min_sites)return[false,L=='hi'?`${p.min_sites}+ जगहों के लिए`:`for ${p.min_sites}+ locations`];
+ if(p.requires_gstin=='Y'&&!prof.gst)return[false,L=='hi'?'चालू GSTIN ज़रूरी है':'needs an active GSTIN'];
+ if(p.need_one.length&&!p.need_one.some(x=>ids.includes(x)))return[false,L=='hi'?'पहले इंटरनेट प्लान चाहिए':'needs an internet plan first'];return[true,''] }
+const WANT={whatsapp:['P15',e=>1],sms:['P14',e=>1],email:['P16',e=>e],storage:['P17',e=>1],pos:['P19',e=>1],cctv:['P23',e=>2],security:['P20',e=>e],wifi:['P22',e=>1],website:['P18',e=>1],failover:['P09',e=>1],telephony:['P12',e=>1],tollfree:['P13',e=>1],iot:['P24',e=>Math.max(1,e/10|0)],fleet:['P25',e=>Math.max(1,e/10|0)],firewall:['P21',e=>1],sdwan:['P10',e=>1]};
+function pickNet(prof){const e=prof.employees;const o=e>=150?['P06']:e>=50?['P05']:(e>=15&&prof.tier==1)?['P03']:e>=5?['P02']:['P01'];for(const id of[...o,'P02','P01'])if(eligible(CAT[id],prof,[])[0])return id;return'P01'}
+function recommend(prof,wants){const items=[],ex=[],ids=[];
+ const add=(pid,qty,why)=>{const[ok,r]=eligible(CAT[pid],prof,ids);if(ok){items.push({pid,qty,why});ids.push(pid)}else ex.push({pid,reason:r})};
+ const net=pickNet(prof);add(net,prof.sites,L=='hi'?`${prof.employees} लोगों के लिए सही स्पीड`:`Right-sized for ${prof.employees} staff`+(prof.sites>1?` across ${prof.sites} sites`:''));
+ if(prof.sims)add(prof.employees>=5?'P08':'P07',prof.sims,L=='hi'?'सारे सिम एक बिल में':'Business SIMs on one bill');
+ wants.forEach(w=>{if(WANT[w]){const[pid,q]=WANT[w];add(pid,CAT[pid].unit.startsWith('per site')?prof.sites:q(prof.employees),CAT[pid].product_name)}});return{items,ex}}
+const price=(p,c)=>{const f={12:1,24:.5,36:0}[c]??1;return Math.round(p.price_min_inr_per_month+(p.price_max_inr_per_month-p.price_min_inr_per_month)*f)};
+const setupOf=i=>CAT[i.pid].one_time_setup_inr*(CAT[i.pid].unit.startsWith('per site')?i.qty:1);
+/* GSTIN */
+const CH='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+function gchk(s){let tot=0;for(let i=0;i<14;i++){const v=CH.indexOf(s[i])*(i%2?2:1);tot+=Math.floor(v/36)+v%36}return CH[(36-tot%36)%36]}
+const gvalid=g=>!!g&&/^\d{2}[A-Z]{5}\d{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/.test(g)&&gchk(g)==g[14];
+const CONF={O:'0','0':'O',I:'1','1':'I',S:'5','5':'S',B:'8','8':'B',Z:'2','2':'Z',G:'6','6':'G'};
+function grepair(g){if(gvalid(g))return[g,false];if(!g||g.length!=15)return[g,false];for(let i=0;i<15;i++){const c=CONF[g[i]];if(c){const x=g.slice(0,i)+c+g.slice(i+1);if(gvalid(x))return[x,true]}}return[g,false]}
+const PAIRS=new Set(['O0','I1','IT','IJ','S5','B8','Z2','G6','58','UV','DO','QO','Q0'].flatMap(p=>[p,p[1]+p[0]]));
+function grepairReg(g){if(!g||g.length!=15)return[g,false];const hits=[];for(const c of GST.keys()){let d=0,ok=true;for(let i=0;i<15;i++)if(g[i]!=c[i]){d++;if(!PAIRS.has(g[i]+c[i])){ok=false;break}}if(ok&&d>0&&d<=3&&gvalid(c))hits.push(c)}return hits.length==1?[hits[0],true]:[g,false]}
+/* fuzzy */
+const norm=s=>(s||'').toLowerCase().replace(/\(prop\.?,?\s*/g,' ').replace(/[^a-z0-9 ]/g,' ').split(/\s+/).filter(Boolean).join(' ');
+function ratio(a,b){a=norm(a);b=norm(b);if(!a||!b)return 0;/* Ratcliff-Obershelp like difflib */const m=(x,y)=>{if(!x.length||!y.length)return 0;let best=0,bi=0,bj=0;const dp=new Array(y.length+1).fill(0);for(let i=1;i<=x.length;i++){let prev=0;for(let j=1;j<=y.length;j++){const tmp=dp[j];dp[j]=x[i-1]==y[j-1]?prev+1:0;if(dp[j]>best){best=dp[j];bi=i;bj=j}prev=tmp}}if(!best)return 0;return best+m(x.slice(0,bi-best),y.slice(0,bj-best))+m(x.slice(bi),y.slice(bj))};return 2*m(a,b)/(a.length+b.length)}
+const mask=(v,k=4)=>v?'•'.repeat(Math.max(v.length-k,0))+v.slice(-k):v;
+const NEED={gst_certificate:5,udyam_certificate:5,signatory_id:5,address_proof:3};
+const DL={gst_certificate:'GST certificate',udyam_certificate:'Udyam certificate',signatory_id:'Signatory ID',address_proof:'Address proof'};
+function validate(docs){const F=[];const add=(sev,code,doc,msg,fix)=>F.push({sev,code,doc,msg,fix});
+ const f={};for(const k in DL)f[k]=docs[k]?docs[k].fields:{};
+ for(const k in DL){const d=docs[k];if(!d){add('BLOCK','DOC_MISSING',k,`${DL[k]} was not uploaded.`,`Upload your ${DL[k]}.`);continue}
+  const found=Object.keys(d.fields).filter(x=>x!='address').length,need=NEED[k];
+  if(found<need-1||(k=='gst_certificate'&&!d.fields.gstin&&found<need))if(d.meta.blur<200||found<need-1)add('BLOCK','DOC_UNREADABLE',k,`We couldn't read your ${DL[k]} clearly (photo looks blurry or tilted).`,'Retake the photo in good light, flat on a table, all four corners visible.')}
+ let gs=f.gst_certificate.gstin,g=null;
+ if(gs){let[fx,rep]=grepair(gs);if(!gvalid(fx))[fx,rep]=grepairReg(gs);
+  if(!gvalid(fx))add('BLOCK','GSTIN_INVALID','gst_certificate',`GSTIN ${mask(gs)} fails the format/checksum test.`,'Check the number on your certificate.');
+  else{if(rep)add('INFO','GSTIN_OCR_FIXED','gst_certificate','We auto-corrected look-alike characters misread from the photo; please confirm your GSTIN on screen.');gs=fx;f.gst_certificate.gstin=fx;g=GST.get(fx);
+   if(!g)add('BLOCK','GSTIN_NOT_FOUND','gst_certificate',`GSTIN ${mask(fx)} is not in the GST registry.`,'Re-enter your GSTIN or contact your CA.');
+   else{if(g.status!='Active')add('BLOCK','GSTIN_NOT_ACTIVE','gst_certificate',`GSTIN is ${g.status} in the registry. Products that need GST can't be sold.`,"Choose products that don't need GST, or reactivate your GSTIN.");
+    if(ratio(g.legal,f.gst_certificate.legal_name||'')<.8)add('BLOCK','GST_NAME_MISMATCH','gst_certificate',`Legal name on certificate ('${f.gst_certificate.legal_name}') differs from registry ('${g.legal}').`,'Upload the latest certificate.')}}}
+ else if(docs.gst_certificate){const tn=f.gst_certificate.trade_name;if(tn){for(const[k,v]of GST)if(ratio(v.trade,tn)>.92){add('REVIEW','GSTIN_SUGGEST','gst_certificate',`GSTIN unreadable. Is your GSTIN ${mask(k,5)}? (${v.trade})`,'Confirm or type your GSTIN.');break}}}
+ const un=f.udyam_certificate.udyam_number;
+ if(docs.udyam_certificate&&!un)add('BLOCK','UDYAM_NUMBER_MISSING','udyam_certificate','No Udyam registration number found on the certificate.','Upload the full Udyam certificate showing the number.');
+ if(un){const u=UDY.get(un);if(!u)add('BLOCK','UDYAM_NOT_FOUND','udyam_certificate',`Udyam number ${mask(un)} not found in the Udyam registry.`,'Check the number or re-download the certificate.');
+  else{if(ratio(u.name,f.udyam_certificate.enterprise_name||'')<.8)add('BLOCK','UDYAM_NAME_MISMATCH','udyam_certificate',`Enterprise name on certificate differs from registry ('${u.name}').`);
+   if(u.city.toLowerCase()!=(f.udyam_certificate.city||'').toLowerCase())add('REVIEW','UDYAM_CITY_MISMATCH','udyam_certificate',`City on certificate (${f.udyam_certificate.city}) differs from registry (${u.city}).`)}}
+ const names=[];if(g)names.push(['GST registry',g.trade]);else if(f.gst_certificate.trade_name)names.push(['GST certificate',f.gst_certificate.trade_name]);
+ if(f.udyam_certificate.enterprise_name)names.push(['Udyam certificate',f.udyam_certificate.enterprise_name]);if(f.signatory_id.business)names.push(['Signatory ID',f.signatory_id.business]);if(f.address_proof.billed_to)names.push(['Address proof',f.address_proof.billed_to]);
+ if(names.length)for(const[k,v]of names.slice(1))if(ratio(v,names[0][1])<.85)add('BLOCK','BUSINESS_NAME_MISMATCH','cross',`Business name differs: ${k} says '${v}' but ${names[0][0]} says '${names[0][1]}'.`,'Upload documents that carry the same business name.');
+ const sid=f.signatory_id;if(sid.valid_till&&new Date(sid.valid_till+'T00:00:00Z')<TODAY)add('BLOCK','ID_EXPIRED','signatory_id',`Signatory ID expired on ${sid.valid_till}.`,'Upload a valid ID.');
+ const legal=(g&&g.legal)||f.gst_certificate.legal_name;
+ if(sid.name&&legal&&/\(prop/i.test(legal)&&!(norm(legal).includes(norm(sid.name))||ratio(sid.name,legal.split('(')[0])>.85))add('BLOCK','SIGNATORY_NAME_MISMATCH','cross',`Name on ID ('${sid.name}') doesn't match the proprietor on the GST certificate ('${legal}').`,"Use the proprietor's ID, or add an authorisation letter.");
+ if(['office admin','manager','accountant'].includes((sid.designation||'').toLowerCase()))add('REVIEW','SIGNATORY_AUTH','signatory_id',`Signatory is '${sid.designation}'. We need an authorisation letter or the owner to e-sign.`,'Owner e-signs via Aadhaar OTP, or upload an authorisation letter.');
+ const ap=f.address_proof;if(ap.bill_date){const age=Math.round((TODAY-new Date(ap.bill_date+'T00:00:00Z'))/864e5);if(age>90)add('BLOCK','ADDRESS_PROOF_STALE','address_proof',`Bill is ${age} days old (limit 90).`,'Upload a bill dated within the last 90 days.')}
+ const aref=(g&&g.addr)||f.gst_certificate.address;if(ap.address&&aref){const s=ratio(ap.address,aref);if(s<.9)add(s<.7?'BLOCK':'REVIEW','ADDRESS_MISMATCH','cross',`Address on bill differs from the GST address (match ${Math.round(s*100)}%).`,'Upload a bill for the registered address, or update the GST address.')}
+ return F}
+const verdict=F=>F.some(x=>x.sev=='BLOCK')?'ACTION_REQUIRED':F.some(x=>x.sev=='REVIEW')?'NEEDS_REVIEW':'VERIFIED';
+/* ---------- state ---------- */
+const S={tab:1,step:0,msgs:[],prof:{tier:1,employees:0,sites:1,gst:false,sims:0,type:''},wants:[],rec:null,contract:12,off:new Set(),extra:new Set(),consent:false,applicant:'K03',verified:false,day:0,ran:false};
+const TYPES=[['Clinic / Dental','क्लिनिक / डेंटल','prof'],['Shop / Kirana','दुकान / किराना','micro'],['Salon / Pharmacy','सैलून / फ़ार्मेसी','micro'],['CA / Coaching / Office','CA / कोचिंग / ऑफ़िस','prof'],['Restaurant / Retail chain','रेस्टोरेंट / रिटेल चेन','multi'],['Factory / Workshop','फ़ैक्टरी / वर्कशॉप','mfg']];
+const NEEDS=[['internet','Internet','इंटरनेट'],['whatsapp','WhatsApp reminders','WhatsApp रिमाइंडर'],['sms','SMS to customers','ग्राहकों को SMS'],['email','Email & cloud office','ईमेल और क्लाउड ऑफ़िस'],['storage','Cloud storage / backup','क्लाउड स्टोरेज'],['pos','POS & billing','POS और बिलिंग'],['cctv','CCTV','CCTV'],['security','Device security','सिक्योरिटी'],['wifi','Secure Wi-Fi','सिक्योर Wi-Fi'],['failover','Internet backup','इंटरनेट बैकअप'],['telephony','Business phone line','बिज़नेस फ़ोन'],['iot','Machine monitoring','मशीन मॉनिटरिंग'],['fleet','Vehicle tracking','गाड़ी ट्रैकिंग'],['firewall','Managed firewall','मैनेज्ड फ़ायरवॉल']];
+const NETS=[['Home broadband','घर का ब्रॉडबैंड'],['Mobile hotspot','मोबाइल हॉटस्पॉट'],['Business broadband','बिज़नेस ब्रॉडबैंड'],['Leased line','लीज़्ड लाइन'],['Different at each site','हर जगह अलग']];
+const lang=(en,hi)=>L=='hi'?hi:en;
+/* ---------- advisor ---------- */
+const FLOW=['type','emp','sites','tier','gst','net','need','sims'];
+function ask(){const k=FLOW[S.step];if(!k){finish();return}S.msgs.push({r:'bot',k})}
+function ans(label,apply){S.msgs.push({r:'me',txt:label});apply();S.step++;ask();render()}
+function parseNum(s){const m=(s||'').match(/\d+/);return m?+m[0]:null}
+function typed(v){v=v.trim();if(!v)return;const k=FLOW[S.step];const n=parseNum(v);
+ if(k=='emp'&&n)return ans(v,()=>S.prof.employees=n);if(k=='sites'&&n)return ans(v,()=>S.prof.sites=n);if(k=='sims'&&n!=null)return ans(v,()=>S.prof.sims=n);
+ if(k=='type'){const l=v.toLowerCase();const i=/clinic|dental|doctor|क्लिनिक|डॉक्टर/.test(l)?0:/shop|kirana|दुकान|किराना/.test(l)?1:/salon|pharm|सैलून|फ़ार्मेसी/.test(l)?2:/ca |coach|office|कोचिंग|ऑफ़िस/.test(l)?3:/restaurant|chain|रेस्टोरेंट/.test(l)?4:/factory|workshop|फ़ैक्टरी/.test(l)?5:-1;if(i>=0)return ans(v,()=>S.prof.type=i)}
+ if(k=='gst'){const l=v.toLowerCase();if(/^(y|yes|haan|हाँ|हां)/.test(l))return ans(v,()=>S.prof.gst=true);if(/^(n|no|nahi|नहीं)/.test(l))return ans(v,()=>S.prof.gst=false)}
+ S.msgs.push({r:'me',txt:v});S.msgs.push({r:'bot',txt:lang('Sorry, I did not get that – please tap one of the options.','माफ़ कीजिए, समझ नहीं आया – कृपया नीचे से एक विकल्प चुनें।')});render()}
+function finish(){S.rec=recommend(S.prof,S.wants);S.off=new Set();S.extra=new Set();S.msgs.push({r:'bot',k:'rec'})}
+/* ---------- quote ---------- */
+function bundle(){if(!S.rec)return[];let items=S.rec.items.filter(i=>!S.off.has(i.pid)).map(i=>({...i}));const ids=()=>items.map(i=>i.pid);
+ for(const pid of S.extra){if(items.find(i=>i.pid==pid))continue;const q=WANT[Object.keys(WANT).find(w=>WANT[w][0]==pid)];items.push({pid,qty:q?q[1](S.prof.employees):1,why:'Added by you',extra:true})}
+ let changed=true;while(changed){changed=false;items=items.filter(i=>{const[ok]=eligible(CAT[i.pid],S.prof,ids().filter(x=>x!=i.pid));if(!ok){changed=true}return ok})}return items}
+function minContract(items){return Math.max(12,...items.map(i=>CAT[i.pid].min_contract_months))}
+function totals(items){const c=Math.max(S.contract,minContract(items));const m=items.reduce((a,i)=>a+price(CAT[i.pid],c)*i.qty,0);const su=items.reduce((a,i)=>a+setupOf(i),0);const days=Math.max(0,...items.map(i=>CAT[i.pid].typical_install_days));return{c,m,gst:m*.18,tot:m*1.18,su,days}}
+/* ---------- render ---------- */
+const $=s=>document.querySelector(s);const main=$('#main');
+function nav(){const lab=[t('n1'),t('n2'),t('n3'),t('n4'),t('n5')];$('#nav').innerHTML=lab.map((l,i)=>`<button data-t="${i+1}" class="${S.tab==i+1?'on':''} ${(i==0&&S.rec)||(i==2&&S.verified)?'done':''}"><span class="dot">${i==0&&S.rec||i==2&&S.verified?'✓':i+1}</span>${l}</button>`).join('');
+ $('#nav').querySelectorAll('button').forEach(b=>b.onclick=()=>{S.tab=+b.dataset.t;render()})}
+function render(){$('#tag').textContent=t('tag');nav();[advisor,quote,kycView,tracker,backoffice][S.tab-1]();window.scrollTo(0,S.tab==1?document.body.scrollHeight:0)}
+function chips(opts,fn,sel){return `<div class="chips">${opts.map(([id,label])=>`<button class="chip ${sel&&sel.includes(id)?'sel':''}" data-id="${id}">${label}</button>`).join('')}</div>`}
+function advisor(){if(!S.msgs.length)ask();let h=`<h2>${lang('Tell me about your business','अपने बिज़नेस के बारे में बताइए')}</h2><p class="sub">${lang('Six quick questions. No salesman, no paperwork yet.','छह छोटे सवाल। कोई सेल्समैन नहीं, अभी कोई काग़ज़ नहीं।')}</p>`;
+ S.msgs.forEach((m,i)=>{const last=i==S.msgs.length-1;if(m.r=='me')h+=`<div class="bubble me">${m.txt}</div>`;else if(m.txt)h+=`<div class="bubble bot">${m.txt}</div>`;else if(m.k=='rec')h+=recCard();else h+=`<div class="bubble bot">${t('q_'+(m.k=='need'?'need':m.k))}</div>`+(last?askUI(m.k):'')});
+ main.innerHTML=h;bindAdvisor()}
+function askUI(k){const hi=L=='hi';
+ if(k=='type')return chips(TYPES.map((x,i)=>[i,hi?x[1]:x[0]]));
+ if(k=='emp')return chips([['2','1–2'],['4','3–5'],['8','6–10'],['18','11–25'],['40','26–50'],['80','50+']])+typeBox();
+ if(k=='sites')return chips([['1','1'],['2','2–3'],['5','4–9'],['10','10+']])+typeBox();
+ if(k=='tier')return chips([['1',lang('Metro / big city (Tier-1)','मेट्रो / बड़ा शहर (Tier-1)')],['2',lang('Smaller city (Tier-2)','छोटा शहर (Tier-2)')]]);
+ if(k=='gst')return chips([['y',t('yes')],['n',t('no')]]);
+ if(k=='net')return chips(NETS.map((x,i)=>[i,hi?x[1]:x[0]]));
+ if(k=='need')return chips(NEEDS.map(x=>[x[0],hi?x[2]:x[1]]),null,S.wants)+`<button class="btn" id="needDone">${t('done')}</button>`;
+ if(k=='sims')return chips([['0','0'],['1','1'],['2','2'],['4','3–5'],['8','6+']])+typeBox()}
+const typeBox=()=>`<div class="txt"><input id="tx" placeholder="${t('typeHere')}" aria-label="answer"><button class="btn sm" id="txs">${t('send')}</button></div>`;
+function bindAdvisor(){const k=FLOW[S.step];main.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{const id=c.dataset.id,lab=c.textContent;
+  if(k=='type')ans(lab,()=>S.prof.type=+id);else if(k=='emp')ans(lab,()=>S.prof.employees=+id);else if(k=='sites')ans(lab,()=>S.prof.sites=+id);else if(k=='tier')ans(lab,()=>S.prof.tier=+id);
+  else if(k=='gst')ans(lab,()=>S.prof.gst=id=='y');else if(k=='net')ans(lab,()=>S.prof.net=+id);else if(k=='sims')ans(lab,()=>S.prof.sims=+id);
+  else if(k=='need'){const i=S.wants.indexOf(id);i>=0?S.wants.splice(i,1):S.wants.push(id);advisor()}});
+ const nd=$('#needDone');if(nd)nd.onclick=()=>ans(S.wants.length?S.wants.map(w=>NEEDS.find(x=>x[0]==w)[L=='hi'?2:1]).join(', '):'–',()=>{});
+ const tx=$('#tx');if(tx){const go=()=>typed(tx.value);$('#txs').onclick=go;tx.onkeydown=e=>{if(e.key=='Enter')go()}}
+ const sq=$('#seeQ');if(sq)sq.onclick=()=>{S.tab=2;render()};const rs=$('#restart');if(rs)rs.onclick=()=>{Object.assign(S,{step:0,msgs:[],wants:[],rec:null,prof:{tier:1,employees:0,sites:1,gst:false,sims:0,type:''}});render()}}
+function recCard(){const b=bundle(),tt=totals(b);let h=`<div class="bubble bot">${lang('Thank you! Based on what you told me:','धन्यवाद! आपकी बातों के आधार पर:')}</div><div class="card"><b>${t('rec')}</b><div style="margin-top:6px">`;
+ b.forEach(i=>{const p=CAT[i.pid];h+=`<div class="item"><div class="grow"><b>${p.product_name}${i.qty>1?' × '+i.qty:''}</b><small>${i.why}</small></div><div class="price">${inr(price(p,12)*i.qty)}</div></div>`});
+ h+=`</div><div class="row" style="margin-top:8px;border-top:2px solid var(--ink);padding-top:8px"><div class="grow"><b>${t('total')} (ex-GST)</b></div><div class="price" style="font-size:22px">${inr(totals(b).m)}</div></div>`;
+ if(S.rec.ex.length)h+=`<div class="find REVIEW" style="margin-top:10px"><b>${t('cantAdd')}</b>${S.rec.ex.map(e=>`<small>${CAT[e.pid].product_name} – ${e.reason}</small>`).join('')}</div>`;
+ h+=`<p class="k" style="margin:10px 0 0">${lang('I only recommend products from the Accel Business catalogue, and only ones you are eligible for.','मैं सिर्फ़ Accel Business कैटलॉग के वही प्रोडक्ट सुझाता हूँ जिनके लिए आप पात्र हैं।')}</p></div><button class="btn" id="seeQ">${t('seeQuote')}</button><button class="btn ghost" id="restart" style="margin-top:8px">${t('restart')}</button>`;return h}
+function quote(){if(!S.rec){main.innerHTML=`<h2>${t('n2')}</h2><p class="sub">${lang('Answer the advisor’s questions first.','पहले सलाहकार के सवालों के जवाब दें।')}</p><button class="btn" onclick="S.tab=1;render()">${t('n1')}</button>`;return}
+ const b=bundle(),x=totals(b);const sug=Object.values(CAT).filter(p=>!b.find(i=>i.pid==p.product_id)&&eligible(p,S.prof,b.map(i=>i.pid))[0]&&WANT_IDS.has(p.product_id));
+ let h=`<div class="total"><small>${t('total')}</small><div class="big">${inr(x.tot)}</div><small>${inr(x.m)} + ${t('gst18')} ${inr(x.gst)}</small><div class="row" style="margin-top:10px;font-size:14px"><div class="grow">${t('setup')}: <b>${inr(x.su)}</b></div><div>${t('install')} <b>${x.days} ${t('days')}</b></div></div></div>
+ <div class="card"><div class="k" style="margin-bottom:6px">${t('contract')} · ${t('saving')}</div><div class="seg" id="ct">${[12,24,36].map(c=>`<button data-c="${c}" class="${x.c==c?'on':''}">${c} ${t('months')}</button>`).join('')}</div></div>
+ <div class="card"><b>${t('core')}</b>`;
+ S.rec.items.forEach(i=>{const p=CAT[i.pid],on=!S.off.has(i.pid),inB=b.find(z=>z.pid==i.pid);h+=itemRow(p,i,on&&!!inB,inB?false:true)});
+ [...S.extra].forEach(pid=>{const p=CAT[pid];const q=b.find(z=>z.pid==pid);if(q)h+=itemRow(p,q,true,false,true)});
+ h+=`</div>`;if(sug.length){h+=`<div class="card"><b>${t('addons')}</b>`;sug.forEach(p=>{h+=itemRow(p,{pid:p.product_id,qty:defQty(p.product_id)},false,false,true)});h+=`</div>`}
+ h+=`<button class="btn" id="goK">${t('goKyc')}</button>`;main.innerHTML=h;
+ $('#ct').querySelectorAll('button').forEach(b=>b.onclick=()=>{S.contract=+b.dataset.c;quote()});
+ main.querySelectorAll('.tog').forEach(c=>c.onchange=()=>{const pid=c.dataset.p;if(c.dataset.x){c.checked?S.extra.add(pid):S.extra.delete(pid)}else{c.checked?S.off.delete(pid):S.off.add(pid)}quote()});
+ $('#goK').onclick=()=>{S.tab=3;render()}}
+const WANT_IDS=new Set(['P23','P17','P20','P22','P09','P11','P15','P14','P16','P18','P19','P12']);
+const defQty=pid=>{const e=S.prof.employees;return pid=='P23'?2:pid=='P16'||pid=='P20'?e:1};
+function itemRow(p,i,checked,blocked,isExtra){const qty=i.qty,c=Math.max(S.contract,12);const pr=price(p,c)*qty;
+ const reason=blocked?eligible(p,S.prof,bundle().map(z=>z.pid))[1]:'';
+ return `<div class="item"><div class="grow"><b>${p.product_name}${qty>1?' × '+qty:''}</b><small>${p.description}</small>${p.one_time_setup_inr?`<small>${t('setup')}: ${inr(p.one_time_setup_inr)}</small>`:''}${blocked?`<small style="color:var(--warn)">${reason}</small>`:''}</div><div style="text-align:right"><div class="price">${inr(pr)}</div><input type="checkbox" class="tog" data-p="${p.product_id}" ${isExtra?'data-x="1"':''} ${checked?'checked':''} ${blocked?'disabled':''} aria-label="${p.product_name}"></div></div>`}
+let kycRan=0;
+function kycView(){const KS=Object.keys(D.ocr);
+ if(!S.consent){main.innerHTML=`<h2>${lang('Before we look at your documents','दस्तावेज़ देखने से पहले')}</h2><p class="sub">${lang('Here is exactly what we take, and why.','हम क्या लेते हैं और क्यों – साफ़-साफ़।')}</p>
+ <div class="card consent"><div class="scroll"><table><tr><th>${lang('Data','डेटा')}</th><th>${lang('Why we need it','क्यों चाहिए')}</th><th>${lang('Kept for','कितने समय')}</th></tr>
+ <tr><td>GSTIN, Udyam no.</td><td>${lang('Confirm your business is real and eligible','आपका बिज़नेस असली और पात्र है, यह जाँचने के लिए')}</td><td>${lang('Until contract ends + 8 yrs (law)','कॉन्ट्रैक्ट ख़त्म + 8 साल (क़ानून)')}</td></tr>
+ <tr><td>${lang('Signatory name & ID no.','हस्ताक्षरकर्ता का नाम और ID')}</td><td>${lang('Check who can sign the contract','कौन कॉन्ट्रैक्ट साइन कर सकता है')}</td><td>${lang('Same','वही')}</td></tr>
+ <tr><td>${lang('Address on bill','बिल का पता')}</td><td>${lang('Know where to install','इंस्टॉलेशन कहाँ करना है')}</td><td>${lang('Same','वही')}</td></tr>
+ <tr><td>${lang('Photos of documents','दस्तावेज़ों की फ़ोटो')}</td><td>${lang('Read once by OCR, then deleted','OCR से एक बार पढ़कर हटा दी जाती हैं')}</td><td>${lang('30 days','30 दिन')}</td></tr></table></div>
+ <p class="k">${lang('We do not take: Aadhaar number, bank details, contacts, location, or anything not listed. IDs are masked on screen and in logs.','हम नहीं लेते: आधार नंबर, बैंक डिटेल, कॉन्टैक्ट, लोकेशन, या जो ऊपर नहीं लिखा। ID स्क्रीन और लॉग में छुपाए जाते हैं।')}</p>
+ <label><input type="checkbox" id="c1"><span>${lang('I agree to Accel Business using these documents only to verify my business and set up my service (required).','मैं सहमत हूँ कि Accel Business इन दस्तावेज़ों का उपयोग सिर्फ़ मेरा बिज़नेस वेरिफ़ाई करने और सेवा चालू करने के लिए करे (ज़रूरी)।')}</span></label>
+ <label><input type="checkbox" id="c2"><span>${lang('Send me offers on WhatsApp (optional – you can say no and still continue).','मुझे WhatsApp पर ऑफ़र भेजें (वैकल्पिक – मना करने पर भी आगे बढ़ सकते हैं)।')}</span></label>
+ <p class="k">${lang('You can withdraw consent anytime from this app; we then delete your data except what the law requires us to keep.','आप कभी भी सहमति वापस ले सकते हैं; क़ानूनन ज़रूरी डेटा छोड़कर बाक़ी हम हटा देंगे।')}</p></div>
+ <button class="btn" id="agree" disabled>${lang('Agree and continue','सहमत हूँ, आगे बढ़ें')}</button>`;
+  $('#c1').onchange=e=>$('#agree').disabled=!e.target.checked;$('#agree').onclick=()=>{S.consent=true;kycView()};return}
+ const k=S.applicant,docs=D.ocr[k],F=validate(JSON.parse(JSON.stringify(docs))),v=verdict(F);const g=docs.gst_certificate&&docs.gst_certificate.fields;
+ const bizname=(docs.udyam_certificate&&docs.udyam_certificate.fields.enterprise_name)||(g&&g.trade_name)||k;
+ let h=`<h2>${t('n3')}</h2><p class="sub">${lang('Pick a specimen applicant to see how the checks work.','जाँच कैसे काम करती है, देखने के लिए एक नमूना आवेदक चुनें।')}</p>
+ <select id="ap" aria-label="applicant">${KS.map(x=>`<option value="${x}" ${x==k?'selected':''}>${x} – ${((D.ocr[x].udyam_certificate||{}).fields||{}).enterprise_name||((D.ocr[x].gst_certificate||{}).fields||{}).trade_name||((D.ocr[x].signatory_id||{}).fields||{}).business||''}</option>`).join('')}</select>
+ <div class="docs" style="margin-top:10px">${Object.keys(DL).map(d=>{const o=docs[d];return `<div class="doc">${o?`<img alt="${DL[d]}" src="${D.thumbs[k+'_'+d]}">`:`<div class="miss">${lang('Missing','नहीं मिला')}</div>`}<div><b>${DL[d]}</b>${o?`<div class="kv">${Object.entries(o.fields).filter(([a])=>a!='address').slice(0,3).map(([a,b])=>`${a.replace('_',' ')}: <b>${/gstin|udyam_number|id_no|consumer/.test(a)?mask(b):b}</b>`).join('<br>')}</div>`:''}</div></div>`}).join('')}</div>
+ <div id="res">`;
+ if(F.length==0||v=='VERIFIED')h+=`<div class="find PASS"><b>✓ ${lang('All checks passed','सभी जाँचें पास')}</b><small>${lang('Documents read, matched with GST and Udyam registries, and consistent with each other.','दस्तावेज़ पढ़े गए, GST और Udyam रजिस्ट्री से मिलान हुआ, और आपस में मेल खाते हैं।')}</small></div>`;
+ F.forEach(f=>h+=`<div class="find ${f.sev}"><b>${f.sev=='BLOCK'?'✕ ':f.sev=='REVIEW'?'! ':'i '}${f.msg}</b>${f.fix?`<small>${lang('What to do','क्या करें')}: ${f.fix}</small>`:''}</div>`);
+ h+=`</div><div class="k" style="margin:6px 0">${lang('Checks run','की गई जाँचें')}: GSTIN checksum · GST registry · Udyam registry · name match · signatory · address ≤90 days</div>`;
+ const can=v!='ACTION_REQUIRED';h+=`<button class="btn" id="goT" ${can?'':'disabled'}>${can?(v=='NEEDS_REVIEW'?lang('Owner e-sign & continue','मालिक e-sign करें और आगे बढ़ें'):lang('Confirm & place order','कन्फ़र्म करें और ऑर्डर दें')):lang('Fix the issues above to continue','आगे बढ़ने के लिए ऊपर की समस्याएँ ठीक करें')}</button>
+ <p class="k">${lang('Demo note: OCR runs in the Python engine (Tesseract). This page replays its output for the 12 specimen applicants and re-runs every validation live.','डेमो नोट: OCR Python इंजन (Tesseract) में चलता है। यह पेज 12 नमूना आवेदकों का आउटपुट चलाकर सभी जाँचें लाइव करता है।')}</p>`;
+ main.innerHTML=h;$('#ap').onchange=e=>{S.applicant=e.target.value;S.verified=false;kycView()};const gt=$('#goT');if(gt&&can)gt.onclick=()=>{S.verified=true;S.day=0;S.tab=4;render()}}
+const STEPS=[['Order placed','ऑर्डर मिला',0,'We have your order.','आपका ऑर्डर मिल गया।'],['Documents verified','दस्तावेज़ वेरिफ़ाई',0.3,'Your documents passed checks.','आपके दस्तावेज़ जाँच में पास हुए।'],['Engineer assigned','इंजीनियर असाइन',1,'Ravi from our partner team will visit.','रवि (हमारी पार्टनर टीम) आएंगे।'],['Site survey','साइट सर्वे',2,'Quick check of cable route.','केबल रूट की जाँच।'],['Installation','इंस्टॉलेशन',null,'Installation at your premises.','आपके यहाँ इंस्टॉलेशन।'],['SIMs delivered','सिम डिलीवरी',null,'SIMs activated in your name.','सिम आपके नाम पर चालू।'],['Service live','सेवा चालू',null,'Your first bill is generated.','आपका पहला बिल बनेगा।']];
+function tracker(){if(!S.verified||!S.rec){main.innerHTML=`<h2>${t('n4')}</h2><p class="sub">${lang('Your order tracker appears here once your documents are verified.','दस्तावेज़ वेरिफ़ाई होने पर आपका ऑर्डर ट्रैकर यहाँ दिखेगा।')}</p><button class="btn" onclick="S.tab=S.rec?3:1;render()">${S.rec?t('n3'):t('n1')}</button>`;return}
+ const b=bundle(),x=totals(b),inst=x.days;const when=[0,.3,1,2,inst-1,inst,inst+1].map((d,i)=>Math.max(d,i?[0,.3,1,2][i]??0:0));
+ const day=S.day;const cur=when.filter(d=>d<=day).length-1;const dt=d=>{const z=new Date(TODAY.getTime()+Math.ceil(d)*864e5);return z.toLocaleDateString(L=='hi'?'hi-IN':'en-IN',{day:'numeric',month:'short'})};
+ const next=STEPS[Math.min(cur+1,6)];
+ let h=`<h2>${lang('Your order','आपका ऑर्डर')} #AB-26-4817</h2><p class="sub">${lang(`Expected live by ${dt(inst+1)} · based on ${inst}-day typical install for your products`,`${dt(inst+1)} तक चालू · आपके प्रोडक्ट के ${inst}-दिन के सामान्य इंस्टॉल के आधार पर`)}</p>
+ <div class="card"><b>${cur>=6?lang('Your service is live 🎉','आपकी सेवा चालू है 🎉'):lang(STEPS[cur][3],STEPS[cur][4])}</b><div class="k">${cur<6?lang('Next: ','अगला: ')+lang(next[0],next[1])+' · '+dt(when[cur+1]):''}</div><div class="tl">${STEPS.map((s,i)=>`<div class="step ${i<cur?'done':i==cur?(cur>=6?'done':'now'):'todo'}"><span class="pin">${i<cur||(i==cur&&cur>=6)?'✓':''}</span><div><b>${lang(s[0],s[1])}</b><small>${i<=cur?lang(s[3],s[4]):''} ${dt(when[i])}</small></div></div>`).join('')}</div></div>
+ <div class="card"><div class="k">${lang('Demo: move time forward','डेमो: समय आगे बढ़ाएँ')} · ${lang('Day','दिन')} ${day}</div><input type="range" id="sl" min="0" max="${inst+1}" step="1" value="${day}" aria-label="day"></div>
+ <div class="k" style="margin:10px 0 4px">${lang('WhatsApp update you will get','WhatsApp पर आपको यह संदेश मिलेगा')}</div><div class="wa">${cur>=6?lang('✅ Your Accel Business services are live. One bill, one support number: 1800-XXX-XXXX.','✅ आपकी Accel Business सेवाएँ चालू हैं। एक बिल, एक सपोर्ट नंबर।'):cur==4?lang('🔧 Installation today. Engineer Ravi arrives between 11 AM–1 PM. Reply 1 to reschedule.','🔧 आज इंस्टॉलेशन। रवि 11 AM–1 PM के बीच आएंगे। बदलने के लिए 1 भेजें।'):lang(`📍 Status: ${STEPS[cur][0]} ✓. Next: ${next[0]} on ${dt(when[Math.min(cur+1,6)])}.`,`📍 स्थिति: ${STEPS[cur][1]} ✓। अगला: ${next[1]}, ${dt(when[Math.min(cur+1,6)])}।`)}</div>
+ <p class="k">${lang('Status chase calls needed: 0 (was 3 on average).','स्टेटस के लिए कॉल: 0 (पहले औसतन 3)।')}</p>`;
+ main.innerHTML=h;$('#sl').oninput=e=>{S.day=+e.target.value;tracker()}}
+function backoffice(){const A=D.analysis;const f=A.funnel,nm=['Lead','Contacted','Needs assessed','Quote accepted','KYC complete','Activated'];
+ let h=`<h2>${lang('Team view','टीम व्यू')}</h2><p class="sub">${lang('For sales and channel partners: who to call, and why the advisor lost them.','सेल्स और पार्टनर के लिए: किसे कॉल करें, और सलाहकार ने किसे क्यों खोया।')}</p>
+ <div class="card"><b>${lang('Funnel today (Apr–Jun 2026)','आज का फ़नल (अप्रैल–जून 2026)')}</b>${f.map((n,i)=>`<div class="row" style="margin-top:6px"><div style="width:110px;font-size:13px">${nm[i]}</div><div class="grow" style="background:var(--chip);border-radius:6px"><div style="width:${n/f[0]*100}%;min-width:38px;background:var(--brand);color:var(--brand-ink);border-radius:6px;padding:0 8px;font-size:13px;font-weight:700">${n.toLocaleString('en-IN')}</div></div></div>`).join('')}</div>
+ <div class="card"><b>${lang('Lead score','लीड स्कोर')}</b><p class="k" style="margin:4px 0">${lang(`Logistic model on 5,000 leads. AUC ${A.auc}. Top-decile leads convert at ${(A.top_decile_conv*100).toFixed(0)}% vs ${(A.base_conv*100).toFixed(1)}% average.`,`5,000 लीड पर मॉडल। AUC ${A.auc}। टॉप-10% लीड ${(A.top_decile_conv*100).toFixed(0)}% बदलती हैं, औसत ${(A.base_conv*100).toFixed(1)}%।`)}</p>
+ <div class="k">${lang('Pushes score up','स्कोर बढ़ाने वाले')}: ${Object.keys(A.top_drivers).reverse().slice(0,4).map(k=>k.replace(/_/g,' ')).join(', ')}</div></div>
+ <div class="card"><b>${lang('Call these first','पहले इन्हें कॉल करें')}</b><p class="k" style="margin:2px 0 6px">${lang('Stalled at needs/quote stage, highest score','नीड्स/कोट स्टेज पर रुके, सबसे ज़्यादा स्कोर')}</p><div class="scroll"><table><tr><th>${lang('Business','बिज़नेस')}</th><th>${lang('Score','स्कोर')}</th><th>${lang('Stuck at','कहाँ रुका')}</th><th>${lang('Why lost','कारण')}</th></tr>${A.call_list.slice(0,12).map(r=>`<tr><td>${r.business_name}<div class="k">${r.city} · ${r.employee_count} staff</div></td><td><b>${Math.round(r.score*100)}</b></td><td>${r.stage_reached}</td><td>${r.drop_reason}</td></tr>`).join('')}</table></div></div>
+ <div class="card"><b>${lang('Where the digital journey recovers drops','डिजिटल जर्नी कहाँ ड्रॉप बचाती है')}</b>${Object.entries(A.drops_by_lever).filter(([k])=>k!='Not addressed').sort((a,b)=>b[1]-a[1]).map(([k,v])=>`<div class="row" style="margin-top:4px"><div class="grow">${k}</div><b>${v}</b></div>`).join('')}</div>`;main.innerHTML=h}
+/* ---------- boot ---------- */
+document.querySelectorAll('.lang button').forEach(b=>b.onclick=()=>{L=b.dataset.l;document.documentElement.lang=L;document.querySelectorAll('.lang button').forEach(x=>x.classList.toggle('on',x==b));S.msgs=S.msgs.filter(m=>true);render()});
+window.__test={validate,verdict,D,recommend,CAT,S};
+render();
+</script></body></html>

@@ -1,0 +1,541 @@
+{
+ "funnel": [
+  5000,
+  3406,
+  1974,
+  861,
+  588,
+  368
+ ],
+ "drops_by_lever": {
+  "Not addressed": 1925,
+  "Self-serve (no visit)": 827,
+  "WhatsApp/App re-engage": 805,
+  "OTP-verified capture": 319,
+  "Smart KYC": 220,
+  "Single clear price": 206,
+  "Instant quote": 179,
+  "Tracker + partner SLA": 98,
+  "e-sign / owner OTP": 53
+ },
+ "drops_by_reason": [
+  {
+   "stage_reached": "Contacted",
+   "drop_reason": "Locked in with current provider",
+   "n": 325
+  },
+  {
+   "stage_reached": "Contacted",
+   "drop_reason": "Only wanted a mobile plan",
+   "n": 280
+  },
+  {
+   "stage_reached": "Contacted",
+   "drop_reason": "Owner had no time for a visit",
+   "n": 531
+  },
+  {
+   "stage_reached": "Contacted",
+   "drop_reason": "Visit not scheduled by sales",
+   "n": 296
+  },
+  {
+   "stage_reached": "KYC complete",
+   "drop_reason": "Customer cancelled before install",
+   "n": 53
+  },
+  {
+   "stage_reached": "KYC complete",
+   "drop_reason": "First payment failed",
+   "n": 28
+  },
+  {
+   "stage_reached": "KYC complete",
+   "drop_reason": "Installation delayed beyond 21 days",
+   "n": 98
+  },
+  {
+   "stage_reached": "KYC complete",
+   "drop_reason": "Site not feasible for fibre",
+   "n": 41
+  },
+  {
+   "stage_reached": "Lead",
+   "drop_reason": "Not interested on first call",
+   "n": 470
+  },
+  {
+   "stage_reached": "Lead",
+   "drop_reason": "Unreachable after 3 attempts",
+   "n": 805
+  },
+  {
+   "stage_reached": "Lead",
+   "drop_reason": "Wrong or invalid number",
+   "n": 319
+  },
+  {
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Competitor offered cheaper plan",
+   "n": 207
+  },
+  {
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Decided to wait",
+   "n": 107
+  },
+  {
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Price too high",
+   "n": 414
+  },
+  {
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Quote too complex to understand",
+   "n": 206
+  },
+  {
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Quote took too long to arrive",
+   "n": 179
+  },
+  {
+   "stage_reached": "Quote accepted",
+   "drop_reason": "Authorised signatory not available",
+   "n": 53
+  },
+  {
+   "stage_reached": "Quote accepted",
+   "drop_reason": "Document details did not match",
+   "n": 47
+  },
+  {
+   "stage_reached": "Quote accepted",
+   "drop_reason": "Found paperwork too long",
+   "n": 79
+  },
+  {
+   "stage_reached": "Quote accepted",
+   "drop_reason": "Missing GST or Udyam document",
+   "n": 94
+  }
+ ],
+ "segments": [
+  {
+   "segment": "Micro retail & services",
+   "leads": 2709,
+   "act": 110,
+   "conv": 0.041,
+   "cac_lead": 812.396,
+   "spend": 2200780,
+   "cac_per_act": 20007.091,
+   "mrr": 2504.818,
+   "setup": 1919.091,
+   "days": 16.645,
+   "churn": 0.227,
+   "nps": 7.045,
+   "payback_months": 7.987,
+   "ltv_6m_margin": 13321.079
+  },
+  {
+   "segment": "Professional offices",
+   "leads": 1247,
+   "act": 138,
+   "conv": 0.111,
+   "cac_lead": 1183.536,
+   "spend": 1475870,
+   "cac_per_act": 10694.71,
+   "mrr": 6795.87,
+   "setup": 2054.348,
+   "days": 16.92,
+   "churn": 0.138,
+   "nps": 6.92,
+   "payback_months": 1.574,
+   "ltv_6m_margin": 37968.228
+  },
+  {
+   "segment": "Small manufacturers",
+   "leads": 289,
+   "act": 37,
+   "conv": 0.128,
+   "cac_lead": 1961.938,
+   "spend": 567000,
+   "cac_per_act": 15324.324,
+   "mrr": 19979.73,
+   "setup": 23302.703,
+   "days": 20.514,
+   "churn": 0.081,
+   "nps": 6.459,
+   "payback_months": 0.767,
+   "ltv_6m_margin": 115018.444
+  },
+  {
+   "segment": "Small multi-site businesses",
+   "leads": 755,
+   "act": 83,
+   "conv": 0.11,
+   "cac_lead": 1716.543,
+   "spend": 1295990,
+   "cac_per_act": 15614.337,
+   "mrr": 31233.494,
+   "setup": 45189.157,
+   "days": 18.771,
+   "churn": 0.108,
+   "nps": 6.699,
+   "payback_months": 0.5,
+   "ltv_6m_margin": 177240.671
+  }
+ ],
+ "sources": [
+  {
+   "lead_source": "Channel partner",
+   "leads": 1010,
+   "conv": 0.08,
+   "cac_lead": 1672.208,
+   "spend": 1688930,
+   "act": 81
+  },
+  {
+   "lead_source": "Field sales",
+   "leads": 1720,
+   "conv": 0.073,
+   "cac_lead": 1768.529,
+   "spend": 3041870,
+   "act": 125
+  },
+  {
+   "lead_source": "Inbound call",
+   "leads": 504,
+   "conv": 0.095,
+   "cac_lead": 486.984,
+   "spend": 245440,
+   "act": 48
+  },
+  {
+   "lead_source": "Referral",
+   "leads": 413,
+   "conv": 0.148,
+   "cac_lead": 605.375,
+   "spend": 250020,
+   "act": 61
+  },
+  {
+   "lead_source": "Website form",
+   "leads": 995,
+   "conv": 0.043,
+   "cac_lead": 274.492,
+   "spend": 273120,
+   "act": 43
+  },
+  {
+   "lead_source": "WhatsApp campaign",
+   "leads": 358,
+   "conv": 0.028,
+   "cac_lead": 112.458,
+   "spend": 40260,
+   "act": 10
+  }
+ ],
+ "auc": 0.74,
+ "top_decile_conv": 0.16,
+ "base_conv": 0.073,
+ "top_drivers": {
+  "lead_source_Channel partner": 0.32,
+  "current_internet_Mixed per site": 0.37,
+  "lead_source_Inbound call": 0.39,
+  "has_gstin_Y": 0.57,
+  "segment_Small manufacturers": 0.62,
+  "lead_source_Referral": 0.83
+ },
+ "bottom_drivers": {
+  "lead_source_WhatsApp campaign": -1.01,
+  "segment_Micro retail & services": -0.94,
+  "has_gstin_N": -0.55,
+  "lead_source_Website form": -0.47,
+  "preferred_language_Kannada": -0.45
+ },
+ "call_list": [
+  {
+   "lead_id": "L04434",
+   "business_name": "City Diagnostics",
+   "business_type": "Diagnostic lab",
+   "city": "Bengaluru",
+   "employee_count": 7,
+   "lead_source": "Referral",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Decided to wait",
+   "score": 0.857
+  },
+  {
+   "lead_id": "L01302",
+   "business_name": "Silver Oak Stays",
+   "business_type": "Budget hotel group",
+   "city": "Hyderabad",
+   "employee_count": 112,
+   "lead_source": "Channel partner",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Quote too complex to understand",
+   "score": 0.854
+  },
+  {
+   "lead_id": "L04101",
+   "business_name": "Sunrise Insurance Advisors Pvt Ltd",
+   "business_type": "Insurance agency",
+   "city": "Mumbai",
+   "employee_count": 6,
+   "lead_source": "Referral",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Price too high",
+   "score": 0.848
+  },
+  {
+   "lead_id": "L02696",
+   "business_name": "Harmony Pharma Retail LLP",
+   "business_type": "Pharmacy chain",
+   "city": "Delhi",
+   "employee_count": 41,
+   "lead_source": "Referral",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Price too high",
+   "score": 0.847
+  },
+  {
+   "lead_id": "L01799",
+   "business_name": "Green Leaf Pharma Retail",
+   "business_type": "Pharmacy chain",
+   "city": "Mumbai",
+   "employee_count": 45,
+   "lead_source": "Channel partner",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Price too high",
+   "score": 0.841
+  },
+  {
+   "lead_id": "L03710",
+   "business_name": "Moonlight Tours & Travels LLP",
+   "business_type": "Travel agency",
+   "city": "Pune",
+   "employee_count": 5,
+   "lead_source": "Referral",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Quote too complex to understand",
+   "score": 0.841
+  },
+  {
+   "lead_id": "L03056",
+   "business_name": "New Fitness",
+   "business_type": "Gym chain",
+   "city": "Hyderabad",
+   "employee_count": 36,
+   "lead_source": "Inbound call",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Competitor offered cheaper plan",
+   "score": 0.837
+  },
+  {
+   "lead_id": "L00163",
+   "business_name": "Classic Realty Pvt Ltd",
+   "business_type": "Real estate agency",
+   "city": "Pune",
+   "employee_count": 12,
+   "lead_source": "Referral",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Price too high",
+   "score": 0.831
+  },
+  {
+   "lead_id": "L02908",
+   "business_name": "Zenith & Associates",
+   "business_type": "CA firm",
+   "city": "Delhi",
+   "employee_count": 22,
+   "lead_source": "Referral",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Quote took too long to arrive",
+   "score": 0.828
+  },
+  {
+   "lead_id": "L00121",
+   "business_name": "Classic Packaging",
+   "business_type": "Packaging unit",
+   "city": "Mumbai",
+   "employee_count": 132,
+   "lead_source": "Referral",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Quote took too long to arrive",
+   "score": 0.825
+  },
+  {
+   "lead_id": "L00589",
+   "business_name": "Lakshmi Fitness",
+   "business_type": "Gym chain",
+   "city": "Pune",
+   "employee_count": 50,
+   "lead_source": "Field sales",
+   "stage_reached": "Quote accepted",
+   "drop_reason": "Found paperwork too long",
+   "score": 0.821
+  },
+  {
+   "lead_id": "L02322",
+   "business_name": "Pearl Kitchens",
+   "business_type": "Restaurant chain",
+   "city": "Mumbai",
+   "employee_count": 39,
+   "lead_source": "Referral",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Quote took too long to arrive",
+   "score": 0.818
+  },
+  {
+   "lead_id": "L04934",
+   "business_name": "Coral Pharma Retail Pvt Ltd",
+   "business_type": "Pharmacy chain",
+   "city": "Mumbai",
+   "employee_count": 20,
+   "lead_source": "Referral",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Quote took too long to arrive",
+   "score": 0.817
+  },
+  {
+   "lead_id": "L01213",
+   "business_name": "Evergreen Foods Pvt Ltd",
+   "business_type": "Food processing unit",
+   "city": "Kolkata",
+   "employee_count": 37,
+   "lead_source": "Channel partner",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Competitor offered cheaper plan",
+   "score": 0.814
+  },
+  {
+   "lead_id": "L00763",
+   "business_name": "Annapurna Woodcraft Pvt Ltd",
+   "business_type": "Furniture workshop",
+   "city": "Bengaluru",
+   "employee_count": 50,
+   "lead_source": "Channel partner",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Quote too complex to understand",
+   "score": 0.811
+  },
+  {
+   "lead_id": "L00658",
+   "business_name": "Classic Kids Academy",
+   "business_type": "Pre-school chain",
+   "city": "Mumbai",
+   "employee_count": 33,
+   "lead_source": "Channel partner",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Decided to wait",
+   "score": 0.81
+  },
+  {
+   "lead_id": "L04430",
+   "business_name": "City Foods LLP",
+   "business_type": "Food processing unit",
+   "city": "Hyderabad",
+   "employee_count": 145,
+   "lead_source": "Channel partner",
+   "stage_reached": "Quote accepted",
+   "drop_reason": "Missing GST or Udyam document",
+   "score": 0.808
+  },
+  {
+   "lead_id": "L03227",
+   "business_name": "Riddhi Classes Pvt Ltd",
+   "business_type": "Coaching centre",
+   "city": "Kochi",
+   "employee_count": 3,
+   "lead_source": "Referral",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Decided to wait",
+   "score": 0.805
+  },
+  {
+   "lead_id": "L00722",
+   "business_name": "Apex Fitness",
+   "business_type": "Gym chain",
+   "city": "Pune",
+   "employee_count": 22,
+   "lead_source": "Referral",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Decided to wait",
+   "score": 0.803
+  },
+  {
+   "lead_id": "L01479",
+   "business_name": "Annapurna Fashions LLP",
+   "business_type": "Apparel retail chain",
+   "city": "Ahmedabad",
+   "employee_count": 35,
+   "lead_source": "Channel partner",
+   "stage_reached": "Quote accepted",
+   "drop_reason": "Missing GST or Udyam document",
+   "score": 0.803
+  },
+  {
+   "lead_id": "L02614",
+   "business_name": "Classic Stays",
+   "business_type": "Budget hotel group",
+   "city": "Bengaluru",
+   "employee_count": 101,
+   "lead_source": "Referral",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Quote too complex to understand",
+   "score": 0.802
+  },
+  {
+   "lead_id": "L00687",
+   "business_name": "Galaxy Diagnostics",
+   "business_type": "Diagnostic lab",
+   "city": "Delhi",
+   "employee_count": 9,
+   "lead_source": "Inbound call",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Price too high",
+   "score": 0.802
+  },
+  {
+   "lead_id": "L02505",
+   "business_name": "Silver Oak Dental Care",
+   "business_type": "Dental clinic",
+   "city": "Pune",
+   "employee_count": 16,
+   "lead_source": "Referral",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Competitor offered cheaper plan",
+   "score": 0.801
+  },
+  {
+   "lead_id": "L00631",
+   "business_name": "Evergreen Diagnostics",
+   "business_type": "Diagnostic lab",
+   "city": "Chennai",
+   "employee_count": 17,
+   "lead_source": "Channel partner",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Competitor offered cheaper plan",
+   "score": 0.8
+  },
+  {
+   "lead_id": "L01593",
+   "business_name": "Pearl Printers",
+   "business_type": "Printing press",
+   "city": "Patna",
+   "employee_count": 79,
+   "lead_source": "Referral",
+   "stage_reached": "Needs assessed",
+   "drop_reason": "Quote too complex to understand",
+   "score": 0.798
+  }
+ ],
+ "n": 5000,
+ "gst_conv": {
+  "N": 0.02,
+  "Y": 0.096
+ },
+ "median_bundle": 6900.0,
+ "avg_days": 17.616847826086957
+}

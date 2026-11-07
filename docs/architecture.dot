@@ -1,0 +1,35 @@
+digraph G {
+  rankdir=LR; splines=spline; nodesep=0.28; ranksep=0.9; newrank=true; bgcolor="white"; pad=0.3;
+  node [shape=box, style="rounded,filled", fontname="DejaVu Sans", fontsize=13, fillcolor="#FFFFFF", color="#333333", margin="0.18,0.10"];
+  edge [fontname="DejaVu Sans", fontsize=10.5, color="#555555", arrowsize=0.8];
+
+  subgraph cluster_client { label="Owner's phone (EN / HI)"; fontname="DejaVu Sans Bold"; fontsize=14; style="rounded,filled"; fillcolor="#FDECEC"; color="#E4002B";
+    adv [label="1 Advisor chat"]; quo [label="2 Quote + add-on toggles"]; kyc [label="3 Consent + KYC upload"]; trk [label="4 Order tracker"]; }
+
+  subgraph cluster_api { label="API layer (FastAPI)"; fontname="DejaVu Sans Bold"; fontsize=14; style="rounded,filled"; fillcolor="#F3F3F3"; color="#777777";
+    gw [label="API gateway\nauth by OTP, rate limits", fillcolor="#FFFFFF"];
+    cons [label="Consent service\npurpose + timestamp + version"];
+    advs [label="Advisor service\nLLM talks, rules decide"];
+    rules [label="Rules engine\neligibility from catalogue", fillcolor="#FFE9A8"];
+    qs [label="Quote engine\nprice, GST, contract"];
+    kycs [label="KYC engine", fillcolor="#FFE9A8"];
+    ord [label="Order + tracker service"];
+  }
+
+  subgraph cluster_kyc { label="KYC internals"; fontname="DejaVu Sans Bold"; fontsize=12; style="rounded,dashed"; color="#999999";
+    ocr [label="OCR\nTesseract + preprocessing"]; val [label="Validators\nGSTIN checksum, name/address match,\nID expiry, bill age"]; reg [label="Registry lookups\nGSTIN + Udyam (mock APIs)", fillcolor="#E4F2E7"]; }
+
+  subgraph cluster_data { label="Data stores"; fontname="DejaVu Sans Bold"; fontsize=14; style="rounded,filled"; fillcolor="#EEF3F8"; color="#4A6D8C";
+    cat [label="Product catalogue\n25 products", shape=cylinder]; vault [label="Encrypted document vault\nauto-delete 30 days", shape=cylinder]; db [label="Orders + leads DB\nmasked IDs only in logs", shape=cylinder]; audit [label="Audit log\nconsent + decisions", shape=cylinder]; }
+
+  subgraph cluster_ext { label="Outside systems (production)"; fontname="DejaVu Sans Bold"; fontsize=14; style="rounded,dashed"; color="#999999";
+    wa [label="WhatsApp Business API"]; part [label="Installation partner app"]; dl [label="DigiLocker / e-sign\n(Aadhaar OTP)"]; bill [label="Billing + CRM"]; }
+
+  subgraph cluster_bo { label="Back-office"; fontname="DejaVu Sans Bold"; fontsize=14; style="rounded,filled"; fillcolor="#F0F7EE"; color="#5C8F4F";
+    score [label="Lead propensity model\nlogistic, AUC 0.74"]; dash [label="Sales + partner dashboard\ncall list, stalled leads, KPIs"]; }
+
+  adv -> gw; quo -> gw; kyc -> gw; trk -> gw;
+  gw -> cons; gw -> advs; advs -> rules; rules -> cat; gw -> qs; qs -> rules; gw -> kycs; cons -> audit;
+  kycs -> ocr; ocr -> val; val -> reg; kycs -> vault; kycs -> dl [style=dashed];
+  gw -> ord; ord -> db; ord -> wa [style=dashed]; ord -> part [style=dashed]; ord -> bill [style=dashed];
+}
